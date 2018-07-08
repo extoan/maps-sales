@@ -1,0 +1,239 @@
+﻿
+<html>
+
+<head>
+  <title>The Geovisualization Example</title>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+  <link rel="stylesheet" type="text/css" href="./dist/index.css">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+  type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+  type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
+  type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-clustering.js"></script>
+  <script type="text/javascript" src="https://js.cit.datalens.api.here.com/latest/mapsjs-datalens.js"></script>
+  </head>
+  <body>
+  <div style="width: 1366px; height: 768px" id="mapContainer"></div>
+  <script type="text/javascript" charset="utf-8">
+
+    // Initialize the platform object:
+    var platform = new H.service.Platform({
+    'app_id': '1ayrEi9rx56FNRVb6aIN',
+    'app_code': '8LKEETCYqMqQ5txFm9s0jw'
+    });
+
+    // Obtain the default map types from the platform object
+    var maptypes = platform.createDefaultLayers();
+
+    // Instantiate (and display) a map object:
+    var map = new H.Map(
+    document.getElementById('mapContainer'),
+    maptypes.normal.map,
+    {
+      zoom: 12,
+      center: { lng: 41.97, lat: 45.04 }
+    });
+    var ui = H.ui.UI.createDefault(map, maptypes, 'ru-RU');
+    // Enable the event system on the map instance:
+    var mapEvents = new H.mapevents.MapEvents(map);
+    var behavior = new H.mapevents.Behavior(mapEvents);
+
+
+
+// Вставка достопримечательностей
+var icon = new H.map.Icon('graphics/soldat.png');
+var marker1 = new H.map.Marker({ lat: 45.049132, lng: 41.974116 }, { icon: icon });
+var bubble1 = new H.ui.InfoBubble({lat:45.049132, lng:41.974116 }, {content: '<b> Красноармейцам</b>'});
+ui.addBubble(bubble1);
+bubble1.close();
+marker1.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble1.open();
+      
+    }
+  });
+
+var icon = new H.map.Icon('graphics/vladimir.png');
+var marker = new H.map.Marker({ lat: 45.023974, lng: 41.896317 }, { icon: icon });
+var bubble2 = new H.ui.InfoBubble({lat:45.023974, lng:41.896317 }, {content: '<b> Памятник князу Владимиру</b>'});
+ui.addBubble(bubble2);
+bubble2.close();
+marker.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble2.open();
+    }
+  });   
+
+var icon = new H.map.Icon('graphics/alexsan3.png');
+var marker2 = new H.map.Marker({ lat: 45.044759, lng: 41.969030 }, { icon: icon });
+var bubble3 = new H.ui.InfoBubble({lat:45.044759, lng:41.969030 }, {content: '<b> Александровская площадь</b>'});
+ui.addBubble(bubble3);
+bubble3.close();
+marker2.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble3.open();
+    }
+  });   
+
+var icon = new H.map.Icon('graphics/vodnikam.png');
+var marker3 = new H.map.Marker({ lat: 45.038728, lng: 41.956332 }, { icon: icon }) 
+
+var icon = new H.map.Icon('graphics/fontan.png');
+var marker4 = new H.map.Marker({ lat: 45.049101, lng: 41.981654 }, { icon: icon });
+var bubble4 = new H.ui.InfoBubble({lat:45.049101, lng:41.981654 }, {content: '<b> А. С. Пушкин</b>'});
+ui.addBubble(bubble4);
+bubble4.close();
+marker4.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble4.open();
+    }
+  });   
+
+var icon = new H.map.Icon('graphics/fontan2.png');
+var marker5 = new H.map.Marker({ lat: 45.046535, lng: 41.973716 }, { icon: icon });
+var bubble5 = new H.ui.InfoBubble({lat:45.046535, lng:41.973716 }, {content: '<b> Фонтан Дети</b>'});
+ui.addBubble(bubble5);
+bubble5.close();
+marker5.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble5.open();
+    }
+  });   
+
+var icon = new H.map.Icon('graphics/gora.png');
+var marker6 = new H.map.Marker({ lat: 45.047652, lng: 41.974775 }, { icon: icon }); 
+var bubble6 = new H.ui.InfoBubble({lat:45.047652, lng:41.974775 }, {content: '<b> Крепостная стена</b>'});
+ui.addBubble(bubble6);
+bubble6.close();
+marker6.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble6.open();
+    }
+  });   
+
+var icon = new H.map.Icon('graphics/holodnem.png');
+var marker7 = new H.map.Marker({ lat: 45.043921, lng: 41.934870 }, { icon: icon });
+var bubble7 = new H.ui.InfoBubble({lat:45.043921, lng:41.934870 }, {content: '<b> Беседка</b>'});
+ui.addBubble(bubble7);
+bubble7.close();
+marker7.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble7.open();
+    }
+  }); 
+
+var icon = new H.map.Icon('graphics/kolokol.png');
+var marker8 = new H.map.Marker({ lat: 45.044082, lng: 41.961466 }, { icon: icon });
+var bubble8 = new H.ui.InfoBubble({lat:45.044082, lng:41.961466 }, {content: '<b> Андреевский Собор</b>'});
+ui.addBubble(bubble8);
+bubble8.close();
+marker8.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble8.open();
+    }
+  }); 
+
+var icon = new H.map.Icon('graphics/lermant.png');
+var marker9 = new H.map.Marker({ lat: 45.043862, lng: 41.966777 }, { icon: icon });
+var bubble9 = new H.ui.InfoBubble({lat:45.043862, lng:41.966777 }, {content: '<b> Памятник М. Ю. Лермонтову</b>'});
+ui.addBubble(bubble9);
+bubble9.close();
+marker9.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble9.open();
+    }
+  }); 
+
+var icon = new H.map.Icon('graphics/ozero.png');
+var marker10 = new H.map.Marker({ lat: 45.050108, lng: 41.956465 }, { icon: icon });
+var bubble10 = new H.ui.InfoBubble({lat:45.050108, lng:41.956465 }, {content: '<b> Комсомольское озеро</b>'}); 
+ui.addBubble(bubble10);
+bubble10.close();
+marker10.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble10.open();
+    }
+  }); 
+
+var icon = new H.map.Icon('graphics/sabor.png');
+var marker11 = new H.map.Marker({ lat: 45.049735, lng: 41.978770 }, { icon: icon })  
+var bubble11 = new H.ui.InfoBubble({lat:45.049735, lng:41.978770 }, {content: '<b> Казанский кафедральный собор</b>'}); 
+ui.addBubble(bubble11);
+bubble11.close();
+marker11.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble11.open();
+    }
+  }); 
+
+
+var icon = new H.map.Icon('graphics/spas.png');
+var marker12 = new H.map.Marker({ lat: 45.052085, lng: 41.992781 }, { icon: icon });  
+var bubble12 = new H.ui.InfoBubble({lat:45.052085, lng:41.992781 }, {content: '<b> Тифлисские ворота </b>'}); 
+ui.addBubble(bubble12);
+bubble12.close();
+marker12.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble12.open();
+    }
+  }); 
+
+var icon = new H.map.Icon('graphics/teatr.png');
+var marker13 = new H.map.Marker({ lat: 45.043418, lng: 41.969905 }, { icon: icon });
+var bubble13 = new H.ui.InfoBubble({lat:45.043418, lng:41.969905 }, {content: '<b> Скунб им. Лермонтова </b>'}); 
+ui.addBubble(bubble13);
+bubble13.close();
+marker13.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble13.open();
+    }
+  }); 
+
+var icon = new H.map.Icon('graphics/vech.png');
+var marker14 = new H.map.Marker({ lat: 45.048291, lng: 41.979046 }, { icon: icon });
+var bubble14 = new H.ui.InfoBubble({lat:45.048291, lng:41.979046 }, {content: '<b> Площадь Вечный Огонь </b>'}); 
+ui.addBubble(bubble14);
+bubble14.close();
+marker14.addEventListener('tap', function(ev) {
+    var target = ev.target;
+    if (target instanceof H.map.Marker) {
+      bubble14.open();
+    }
+  }); 
+
+map.addObject(marker);
+map.addObject(marker1);
+map.addObject(marker2);
+map.addObject(marker3);
+map.addObject(marker4);
+map.addObject(marker5);
+map.addObject(marker6);
+map.addObject(marker7);
+map.addObject(marker8);
+map.addObject(marker9);
+map.addObject(marker10);
+map.addObject(marker11);
+map.addObject(marker12);
+map.addObject(marker13);
+map.addObject(marker14);
+  </script>
+  </body>
+</html>
